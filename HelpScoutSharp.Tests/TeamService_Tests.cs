@@ -1,7 +1,4 @@
-using HelpScoutSharp;
-using Microsoft.Extensions.DependencyInjection;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Threading.Tasks;
 
 namespace HelpScoutSharp.Tests

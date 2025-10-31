@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Text.Json.Serialization;
-
-namespace HelpScoutSharp
+﻿namespace HelpScoutSharp
 {
     public class ConversationPage : IPage<Conversation>
     {

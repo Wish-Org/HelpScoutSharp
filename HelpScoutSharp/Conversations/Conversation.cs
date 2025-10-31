@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace HelpScoutSharp
 {
@@ -8,7 +6,7 @@ namespace HelpScoutSharp
     {
         public class Assignee
         {
-            public long id { get; set;}
+            public long id { get; set; }
 
             public string type { get; set; }
 
@@ -122,7 +120,7 @@ namespace HelpScoutSharp
         public Assignee assignee { get; set; }
 
         public CreatedBy createdBy { get; set; }
-        
+
         public DateTime createdAt { get; set; }
 
         public long closedBy { get; set; }

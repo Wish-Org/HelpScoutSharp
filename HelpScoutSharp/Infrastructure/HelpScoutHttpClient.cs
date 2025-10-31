@@ -1,6 +1,5 @@
 ﻿using Flurl;
 using System;
-using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -89,9 +88,9 @@ namespace HelpScoutSharp
                 if (!response.IsSuccessStatusCode)
                 {
                     var exception = new HelpScoutException(
-                        request, 
-                        await (request.Content?.ReadAsStringAsync() ?? Task.FromResult<string>(null)), 
-                        response, 
+                        request,
+                        await (request.Content?.ReadAsStringAsync() ?? Task.FromResult<string>(null)),
+                        response,
                         await (response.Content?.ReadAsStringAsync() ?? Task.FromResult<string>(null)));
                     if (isFirstTry && RateLimitBreachBehavior == RateLimitBreachBehavior.WaitAndRetryOnce && exception.IsRateLimit)
                     {

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace HelpScoutSharp
+﻿namespace HelpScoutSharp
 {
     public class WebhookPage : IPage<Webhook>
     {
