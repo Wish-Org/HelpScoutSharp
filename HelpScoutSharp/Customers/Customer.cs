@@ -68,7 +68,8 @@ public class Customer : IHasId
 
             public string type { get; set; }
 
-            public string value { get; set; }
+            //The docs say it is a string but it can be a number for numeric properties
+            public object value { get; set; }
         }
 
         public CustomerEmail[] emails { get; set; }
