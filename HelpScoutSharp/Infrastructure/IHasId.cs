@@ -1,7 +1,6 @@
-﻿namespace HelpScoutSharp
+﻿namespace HelpScoutSharp;
+
+public interface IHasId
 {
-    public interface IHasId
-    {
-        long id { get; set; }
-    }
+    long id { get; set; }
 }

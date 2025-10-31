@@ -1,15 +1,14 @@
-﻿namespace HelpScoutSharp
-{
-    public enum RateLimitBreachBehavior
-    {
-        /// <summary>
-        /// Throw an exception. This is the default
-        /// </summary>
-        Throw,
+﻿namespace HelpScoutSharp;
 
-        /// <summary>
-        /// Wait until the rate limit is refreshed and retry (once only)
-        /// </summary>
-        WaitAndRetryOnce
-    }
+public enum RateLimitBreachBehavior
+{
+    /// <summary>
+    /// Throw an exception. This is the default
+    /// </summary>
+    Throw,
+
+    /// <summary>
+    /// Wait until the rate limit is refreshed and retry (once only)
+    /// </summary>
+    WaitAndRetryOnce
 }

@@ -1,17 +1,16 @@
 ﻿using System.Threading.Tasks;
 
-namespace HelpScoutSharp
-{
-    public class TeamService : ServiceBase, IListableService<Team, ListOptions>
-    {
-        public TeamService(string accessToken)
-            : base(accessToken, "teams")
-        {
-        }
+namespace HelpScoutSharp;
 
-        public async Task<IPage<Team>> ListAsync(ListOptions options = null)
-        {
-            return await _client.GetAsync<TeamPage>(_serviceUri, options);
-        }
+public class TeamService : ServiceBase, IListableService<Team, ListOptions>
+{
+    public TeamService(string accessToken)
+        : base(accessToken, "teams")
+    {
+    }
+
+    public async Task<IPage<Team>> ListAsync(ListOptions options = null)
+    {
+        return await _client.GetAsync<TeamPage>(_serviceUri, options);
     }
 }

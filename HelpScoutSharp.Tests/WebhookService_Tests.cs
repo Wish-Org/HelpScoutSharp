@@ -2,13 +2,13 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Threading.Tasks;
 
-namespace HelpScoutSharp.Tests
+namespace HelpScoutSharp.Tests;
+
+[TestClass]
+public class WebhookService_Tests
 {
-    [TestClass]
-    public class WebhookService_Tests
-    {
-        private WebhookService _service;
-        private string[] ALL_EVENTS = @"
+    private WebhookService _service;
+    private string[] ALL_EVENTS = @"
 convo.agent.reply.created
 convo.assigned
 convo.created
@@ -23,45 +23,44 @@ customer.created
 customer.updated
 satisfaction.ratings".Split(Environment.NewLine, StringSplitOptions.RemoveEmptyEntries);
 
-        [TestInitialize]
-        public async Task Initialize()
+    [TestInitialize]
+    public async Task Initialize()
+    {
+        HelpScoutHttpClient.RateLimitBreachBehavior = RateLimitBreachBehavior.WaitAndRetryOnce;
+        var authSvc = new AuthenticationService();
+        var token = await authSvc.GetApplicationTokenAsync(TestHelper.ApplicationId, TestHelper.ApplicationSecret);
+        _service = new WebhookService(token.access_token);
+    }
+
+    [TestMethod]
+    public async Task ListWebhooksAsync_Works()
+    {
+        var res = await _service.ListAsync();
+        Assert.IsTrue(res.page.size > 0);
+    }
+
+    [TestMethod]
+    public async Task MutateWebhook_Works()
+    {
+        var webhookId = await _service.CreateAsync(new CreateWebhookRequest
         {
-            HelpScoutHttpClient.RateLimitBreachBehavior = RateLimitBreachBehavior.WaitAndRetryOnce;
-            var authSvc = new AuthenticationService();
-            var token = await authSvc.GetApplicationTokenAsync(TestHelper.ApplicationId, TestHelper.ApplicationSecret);
-            _service = new WebhookService(token.access_token);
-        }
+            url = "https://www.example.com",
+            secret = "mySecret",
+            notification = true,
+            events = ALL_EVENTS,
+            payloadVersion = "V2"
+        });
+        Assert.IsTrue(webhookId > 0);
 
-        [TestMethod]
-        public async Task ListWebhooksAsync_Works()
+        await _service.UpdateAsync(webhookId, new UpdateWebhookRequest
         {
-            var res = await _service.ListAsync();
-            Assert.IsTrue(res.page.size > 0);
-        }
+            url = "https://www.google.com",
+            secret = "mySecretNew",
+            notification = false,
+            events = ALL_EVENTS,
+            payloadVersion = "V2"
+        });
 
-        [TestMethod]
-        public async Task MutateWebhook_Works()
-        {
-            var webhookId = await _service.CreateAsync(new CreateWebhookRequest
-            {
-                url = "https://www.example.com",
-                secret = "mySecret",
-                notification = true,
-                events = ALL_EVENTS,
-                payloadVersion = "V2"
-            });
-            Assert.IsTrue(webhookId > 0);
-
-            await _service.UpdateAsync(webhookId, new UpdateWebhookRequest
-            {
-                url = "https://www.google.com",
-                secret = "mySecretNew",
-                notification = false,
-                events = ALL_EVENTS,
-                payloadVersion = "V2"
-            });
-
-            await _service.DeleteAsync(webhookId);
-        }
+        await _service.DeleteAsync(webhookId);
     }
 }

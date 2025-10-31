@@ -1,15 +1,14 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace HelpScoutSharp
-{
-    public class CustomerPropertiesResult
-    {
-        public class Embedded
-        {
-            [JsonPropertyName("customer-properties")]
-            public CustomerProperty[] customer_properties { get; set; }
-        }
+namespace HelpScoutSharp;
 
-        public Embedded _embedded { get; set; }
+public class CustomerPropertiesResult
+{
+    public class Embedded
+    {
+        [JsonPropertyName("customer-properties")]
+        public CustomerProperty[] customer_properties { get; set; }
     }
+
+    public Embedded _embedded { get; set; }
 }

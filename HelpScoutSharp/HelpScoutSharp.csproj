@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
     <Version>2.6.2</Version>
     <Company>Better Reports</Company>
     <Product>Help Scout API Client for .NET</Product>
@@ -13,6 +12,15 @@
     <IncludeSymbols>true</IncludeSymbols>
     <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <Description>Help Scout API Client for .NET</Description>
+
+    <!-- Ensure the XML doc file is generated -->
+      <GenerateDocumentationFile>true</GenerateDocumentationFile>
+		
+	   <!-- This prevents the warning about missing XML documentation on public members -->
+		<NoWarn>$(NoWarn);1591</NoWarn>
+
+		<!-- Embed PDBs in DLL -->
+	    <DebugType>embedded</DebugType>
   </PropertyGroup>
 
   <ItemGroup>

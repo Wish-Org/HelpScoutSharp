@@ -1,23 +1,22 @@
 ﻿using System;
 
-namespace HelpScoutSharp
+namespace HelpScoutSharp;
+
+public class Team : IHasId
 {
-    public class Team : IHasId
-    {
-        public long id { get; set; }
+    public long id { get; set; }
 
-        public string name { get; set; }
+    public string name { get; set; }
 
-        public string initials { get; set; }
+    public string initials { get; set; }
 
-        public string mention { get; set; }
+    public string mention { get; set; }
 
-        public DateTime createdAt { get; set; }
+    public DateTime createdAt { get; set; }
 
-        public DateTime updatedAt { get; set; }
+    public DateTime updatedAt { get; set; }
 
-        public string timezone { get; set; }
+    public string timezone { get; set; }
 
-        public string photoUrl { get; set; }
-    }
+    public string photoUrl { get; set; }
 }

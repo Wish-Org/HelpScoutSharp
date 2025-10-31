@@ -1,20 +1,19 @@
-﻿namespace HelpScoutSharp
+﻿namespace HelpScoutSharp;
+
+public class CustomerProperty
 {
-    public class CustomerProperty
+    public class CustomerPropertyDropDownOption
     {
-        public class CustomerPropertyDropDownOption
-        {
-            public string id { get; set; }
+        public string id { get; set; }
 
-            public string label { get; set; }
-        }
-
-        public string type { get; set; }
-
-        public string slug { get; set; }
-
-        public string name { get; set; }
-
-        public CustomerPropertyDropDownOption[] options { get; set; }
+        public string label { get; set; }
     }
+
+    public string type { get; set; }
+
+    public string slug { get; set; }
+
+    public string name { get; set; }
+
+    public CustomerPropertyDropDownOption[] options { get; set; }
 }

@@ -1,7 +1,6 @@
-﻿namespace HelpScoutSharp
+﻿namespace HelpScoutSharp;
+
+public class UpdateTagsRequest
 {
-    public class UpdateTagsRequest
-    {
-        public string[] tags { get; set; }
-    }
+    public string[] tags { get; set; }
 }

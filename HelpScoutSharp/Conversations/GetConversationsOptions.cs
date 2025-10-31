@@ -1,7 +1,6 @@
-﻿namespace HelpScoutSharp
+﻿namespace HelpScoutSharp;
+
+public class GetConversationsOptions
 {
-    public class GetConversationsOptions
-    {
-        public string embed { get; set; }
-    }
+    public string embed { get; set; }
 }

@@ -1,7 +1,6 @@
-﻿namespace HelpScoutSharp
+﻿namespace HelpScoutSharp;
+
+public class ListOptions
 {
-    public class ListOptions
-    {
-        public int? page { get; set; }
-    }
+    public int? page { get; set; }
 }

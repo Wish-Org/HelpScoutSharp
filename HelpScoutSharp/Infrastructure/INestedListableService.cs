@@ -1,11 +1,10 @@
 ﻿using System.Threading.Tasks;
 
-namespace HelpScoutSharp
+namespace HelpScoutSharp;
+
+public interface INestedListableService<TNestedEntity, TNestedListOptions>
+    where TNestedEntity : IHasId
+    where TNestedListOptions : ListOptions, new()
 {
-    public interface INestedListableService<TNestedEntity, TNestedListOptions>
-        where TNestedEntity : IHasId
-        where TNestedListOptions : ListOptions, new()
-    {
-        Task<IPage<TNestedEntity>> ListAsync(long parentId, TNestedListOptions listOptions = null);
-    }
+    Task<IPage<TNestedEntity>> ListAsync(long parentId, TNestedListOptions listOptions = null);
 }

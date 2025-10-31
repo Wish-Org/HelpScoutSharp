@@ -1,35 +1,34 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Threading.Tasks;
 
-namespace HelpScoutSharp.Tests
+namespace HelpScoutSharp.Tests;
+
+[TestClass]
+public class RatingService_Tests
 {
-    [TestClass]
-    public class RatingService_Tests
+    private RatingService _service;
+
+    [TestInitialize]
+    public async Task Initialize()
     {
-        private RatingService _service;
+        HelpScoutHttpClient.RateLimitBreachBehavior = RateLimitBreachBehavior.WaitAndRetryOnce;
+        var authSvc = new AuthenticationService();
+        var token = await authSvc.GetApplicationTokenAsync(TestHelper.ApplicationId, TestHelper.ApplicationSecret);
+        _service = new RatingService(token.access_token);
+    }
 
-        [TestInitialize]
-        public async Task Initialize()
+    [TestMethod]
+    public async Task GetRatingAsync_Works()
+    {
+        try
         {
-            HelpScoutHttpClient.RateLimitBreachBehavior = RateLimitBreachBehavior.WaitAndRetryOnce;
-            var authSvc = new AuthenticationService();
-            var token = await authSvc.GetApplicationTokenAsync(TestHelper.ApplicationId, TestHelper.ApplicationSecret);
-            _service = new RatingService(token.access_token);
+            //hard coded rating Id would only be found on integrating test HelpScout accout
+            var rating = await _service.GetAsync(20177871);
+            Assert.IsTrue(rating.id > 0);
         }
-
-        [TestMethod]
-        public async Task GetRatingAsync_Works()
+        catch (HelpScoutException ex) when (ex.Response.StatusCode == System.Net.HttpStatusCode.NotFound)
         {
-            try
-            {
-                //hard coded rating Id would only be found on integrating test HelpScout accout
-                var rating = await _service.GetAsync(20177871);
-                Assert.IsTrue(rating.id > 0);
-            }
-            catch (HelpScoutException ex) when (ex.Response.StatusCode == System.Net.HttpStatusCode.NotFound)
-            {
-                Assert.Inconclusive();
-            }
+            Assert.Inconclusive();
         }
     }
 }

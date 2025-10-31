@@ -1,16 +1,15 @@
-﻿namespace HelpScoutSharp
+﻿namespace HelpScoutSharp;
+
+public class CustomerPage : IPage<Customer>
 {
-    public class CustomerPage : IPage<Customer>
+    public class Embedded
     {
-        public class Embedded
-        {
-            public Customer[] customers { get; set; }
-        }
-
-        public Embedded _embedded { get; set; }
-
-        public Page page { get; set; }
-
-        public Customer[] entities => _embedded.customers;
+        public Customer[] customers { get; set; }
     }
+
+    public Embedded _embedded { get; set; }
+
+    public Page page { get; set; }
+
+    public Customer[] entities => _embedded.customers;
 }
