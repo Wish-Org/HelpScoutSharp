@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace HelpScoutSharp;
+﻿namespace HelpScoutSharp;
 
 public class ListConversationsOptions : ListOptions
 {

@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace HelpScoutSharp;
+﻿namespace HelpScoutSharp;
 
 public interface IListableService<TEntity, TListOptions>
     where TEntity : IHasId

@@ -1,6 +1,4 @@
-﻿using System.Threading.Tasks;
-
-namespace HelpScoutSharp;
+﻿namespace HelpScoutSharp;
 
 public class TeamService : ServiceBase, IListableService<Team, ListOptions>
 {

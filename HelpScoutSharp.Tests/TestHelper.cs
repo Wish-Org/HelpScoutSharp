@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace HelpScoutSharp.Tests;
+﻿namespace HelpScoutSharp.Tests;
 
 /// <summary>
 /// If running in Visual Studio, make sure to restart Visual Studio after setting environment variables

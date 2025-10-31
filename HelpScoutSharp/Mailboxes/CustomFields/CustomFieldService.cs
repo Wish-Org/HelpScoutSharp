@@ -1,6 +1,5 @@
 ﻿
 using Flurl;
-using System.Threading.Tasks;
 
 namespace HelpScoutSharp;
 
