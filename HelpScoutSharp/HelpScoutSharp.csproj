@@ -9,8 +9,6 @@
     <PackageTags>Help Scout, HelpScout</PackageTags>
     <PackageProjectUrl>https://github.com/better-reports/HelpScoutSharp</PackageProjectUrl>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-    <IncludeSymbols>true</IncludeSymbols>
-    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
     <Description>Help Scout API Client for .NET</Description>
 
     <!-- Ensure the XML doc file is generated -->
