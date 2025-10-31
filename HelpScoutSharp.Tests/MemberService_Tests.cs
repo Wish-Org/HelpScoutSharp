@@ -19,7 +19,7 @@ public class MemberService_Tests
     }
 
     [TestMethod]
-    public async Task LisTeamMembersAsync_Works()
+    public async Task ListTeamMembersAsync_Works()
     {
         var team = (await _teamService.ListAsync()).entities[0];
         var res = await _service.ListAsync(team.id);

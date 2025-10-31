@@ -17,7 +17,7 @@ public class TeamService_Tests
     }
 
     [TestMethod]
-    public async Task LisTeamsAsync_Works()
+    public async Task ListTeamsAsync_Works()
     {
         var res = await _service.ListAsync();
         Assert.IsTrue(res.page.size > 0);
