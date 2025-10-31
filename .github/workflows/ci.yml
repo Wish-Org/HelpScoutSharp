@@ -1,32 +1,34 @@
 name: Build Test Publish
 
 on:
-  push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    push:
+        branches: [master]
+    pull_request:
+        branches: [master]
 
 jobs:
-  build:
+    build:
+        runs-on: ubuntu-latest
 
-    runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
 
-    steps:
-    - uses: actions/checkout@v2
-    - name: Setup .NET Core
-      uses: actions/setup-dotnet@v1
-      with:
-        dotnet-version: 3.1.101
-    - name: Install dependencies
-      run: dotnet restore
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
-    - name: Test
-      env:
-        HELP_SCOUT_SHARP_APP_ID: ${{ secrets.HELP_SCOUT_SHARP_APP_ID }}
-        HELP_SCOUT_SHARP_APP_SECRET: ${{ secrets.HELP_SCOUT_SHARP_APP_SECRET }}
-      run: dotnet test --no-restore --verbosity normal
-    - name: Publish to nuget
-      env:
-        NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
-      run: dotnet nuget push HelpScoutSharp/bin/Release/*.nupkg  -s https://api.nuget.org/v3/index.json --skip-duplicate -k $NUGET_API_KEY
+            - name: Setup .NET
+              uses: actions/setup-dotnet@v4
+
+            - name: Install dependencies
+              run: dotnet restore
+
+            - name: Build
+              run: dotnet build -c Release --no-restore
+
+            - name: Test
+              env:
+                  HELP_SCOUT_SHARP_APP_ID: ${{ secrets.HELP_SCOUT_SHARP_APP_ID }}
+                  HELP_SCOUT_SHARP_APP_SECRET: ${{ secrets.HELP_SCOUT_SHARP_APP_SECRET }}
+              run: dotnet test --no-restore --verbosity normal
+
+            - name: Publish to nuget
+              env:
+                  NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
+              run: dotnet nuget push HelpScoutSharp/bin/Release/*.nupkg  -s https://api.nuget.org/v3/index.json --skip-duplicate -k $NUGET_API_KEY
